@@ -1,0 +1,32 @@
+
+{% extends "base.html" %}
+{% block title %}Delete Reservation{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5 text-center">
+      <h2 class="mb-4 text-danger">Delete Reservation</h2>
+      <p class="lead">
+        Are you sure you want to cancel the reservation for
+        <strong>{{ object.room.name }}</strong>
+        on <strong>{{ object.date }}</strong>
+        at <strong>{{ object.hour|add:""|rjust:"2":"0" }}:00</strong>?
+      </p>
+
+      <form method="post">
+        {% csrf_token %}
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-danger">
+            Yes, cancel reservation
+          </button>
+          <a href="{% url 'reservations:list' %}" class="btn btn-outline-secondary">
+            Keep it
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

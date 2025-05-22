@@ -1,0 +1,18 @@
+
+/* Custom overrides & tiny tweaks
+   ------------------------------------------------------------ */
+/* Style the <body> so pages look less cramped on large screens */
+body {
+  padding-bottom: 3rem; /* breathing room below the footer/messages */
+}
+
+/* Make table rows slightly taller for readability */
+table.table > tbody > tr > td {
+  vertical-align: middle;
+}
+
+/* Example utility: subdued text in cards */
+.card-text-muted {
+  color: #6c757d;
+}
+

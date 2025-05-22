@@ -1,0 +1,8 @@
+# Core framework
+Django>=5.0,<5.1
+
+# Environment variables helper
+python-dotenv>=1.0
+
+# Static-files middleware for production
+whitenoise>=6.6

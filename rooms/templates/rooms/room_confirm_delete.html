@@ -1,0 +1,30 @@
+
+{% extends "base.html" %}
+{% block title %}Delete Room{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5 text-center">
+      <h2 class="mb-4 text-danger">Delete Room</h2>
+      <p class="lead">
+        Are you sure you want to permanently delete the room
+        <strong>“{{ object.name }}”</strong>?
+      </p>
+
+      <form method="post">
+        {% csrf_token %}
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-danger">
+            Yes, delete
+          </button>
+          <a href="{% url 'rooms:list' %}" class="btn btn-outline-secondary">
+            Cancel
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

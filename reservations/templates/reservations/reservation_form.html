@@ -1,0 +1,43 @@
+
+{% extends "base.html" %}
+{% block title %}
+  {% if view.object %}Edit Reservation{% else %}Book a Room{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+      <h2 class="mb-4 text-center">
+        {% if view.object %}Edit Reservation{% else %}Book a Room{% endif %}
+      </h2>
+
+      <form method="post" novalidate>
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        {% for field in form.visible_fields %}
+          <div class="mb-3">
+            {{ field.label_tag }}
+            {{ field }}
+            {% if field.help_text %}
+              <small class="form-text text-muted">{{ field.help_text }}</small>
+            {% endif %}
+            {{ field.errors }}
+          </div>
+        {% endfor %}
+
+        <div class="d-grid gap-2">
+          <button type="submit" class="btn btn-success">
+            {% if view.object %}Save Changes{% else %}+ Create Reservation{% endif %}
+          </button>
+          <a href="{% url 'reservations:list' %}" class="btn btn-outline-secondary">
+            Cancel
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

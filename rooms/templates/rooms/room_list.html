@@ -1,0 +1,86 @@
+
+{% extends "base.html" %}
+{% block title %}Meeting Rooms{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Meeting Rooms</h2>
+
+    {% if user.is_staff %}
+      <a class="btn btn-primary" href="{% url 'rooms:create' %}">
+        + Add Room
+      </a>
+    {% endif %}
+  </div>
+
+  {% if rooms %}
+    <div class="table-responsive">
+      <table class="table table-striped align-middle">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Capacity</th>
+            <th class="d-none d-md-table-cell">Location</th>
+            <th class="d-none d-md-table-cell">Amenities</th>
+            {% if user.is_staff %}
+              <th>Actions</th>
+            {% endif %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for room in rooms %}
+            <tr>
+              <td>{{ room.name }}</td>
+              <td>{{ room.capacity }}</td>
+              <td class="d-none d-md-table-cell">{{ room.location }}</td>
+              <td class="d-none d-md-table-cell">{{ room.amenities }}</td>
+              {% if user.is_staff %}
+                <td>
+                  <a
+                    class="btn btn-sm btn-outline-secondary me-1"
+                    href="{% url 'rooms:update' room.pk %}"
+                  >
+                    Edit
+                  </a>
+                  <a
+                    class="btn btn-sm btn-outline-danger"
+                    href="{% url 'rooms:delete' room.pk %}"
+                  >
+                    Delete
+                  </a>
+                </td>
+              {% endif %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    {% if is_paginated %}
+      <nav aria-label="Rooms pagination">
+        <ul class="pagination justify-content-center">
+          {% if page_obj.has_previous %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+            </li>
+          {% endif %}
+          <li class="page-item disabled">
+            <span class="page-link">
+              Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+          </li>
+          {% if page_obj.has_next %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+            </li>
+          {% endif %}
+        </ul>
+      </nav>
+    {% endif %}
+  {% else %}
+    <p class="text-muted">No rooms found.</p>
+  {% endif %}
+</div>
+{% endblock %}
+

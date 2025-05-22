@@ -1,0 +1,40 @@
+
+{% extends "base.html" %}
+{% block title %}My Dashboard{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <h2 class="mb-4">Welcome, {{ user.username }}!</h2>
+
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">Book a Room</h5>
+          <p class="card-text">
+            Need a place to meet? Reserve an available room in just a few clicks.
+          </p>
+          <a href="{% url 'reservations:create' %}" class="btn btn-success">
+            + Book a Room
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">My Reservations</h5>
+          <p class="card-text">
+            View, edit or cancel your upcoming bookings.
+          </p>
+          <a href="{% url 'reservations:list' %}" class="btn btn-primary">
+            View Reservations
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+

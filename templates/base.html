@@ -1,0 +1,64 @@
+
+{# -----------------------------------------------------------------------
+  Shared base layout
+  -----------------------------------------------------------------------
+  Usage:
+      {% extends "base.html" %}
+      {% block title %}Page title{% endblock %}
+      {% block content %}...{% endblock %}
+#}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <title>{% block title %}Meeting-Room Reservation{% endblock %}</title>
+
+    {# ---------------------------------------------------------------
+       Stylesheets
+       - Switch to Tailwind’s compiled CSS if you prefer; keep the
+         <link> tag path identical (`/static/css/main.css`).
+       --------------------------------------------------------------- #}
+    <link
+      rel="stylesheet"
+      href="{% static 'vendor/bootstrap/bootstrap.min.css' %}"
+    />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+
+    {% block extra_head %}{% endblock %}
+  </head>
+
+  <body>
+    {% include "navbar.html" %}
+
+    {% if messages %}
+      <div class="container pt-3">
+        {% for message in messages %}
+          <div
+            class="alert alert-{{ message.tags }} alert-dismissible fade show"
+            role="alert"
+          >
+            {{ message }}
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"
+            ></button>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <main>{% block content %}{% endblock %}</main>
+
+    {# JavaScript (Bootstrap bundle includes Popper) #}
+    <script src="{% static 'vendor/bootstrap/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+  </body>
+</html>
+

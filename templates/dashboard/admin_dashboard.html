@@ -1,0 +1,38 @@
+
+{% extends "base.html" %}
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+  <h2 class="mb-4">Admin Dashboard</h2>
+
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">Manage Rooms</h5>
+          <p class="card-text">
+            Create, edit or retire meeting rooms and keep room information up to date.
+          </p>
+          <a href="{% url 'rooms:list' %}" class="btn btn-primary">Go to Rooms</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100">
+        <div class="card-body">
+          <h5 class="card-title">View All Reservations</h5>
+          <p class="card-text">
+            Browse, modify or cancel any booking across the agency.
+          </p>
+          <a href="{% url 'reservations:list' %}" class="btn btn-primary">
+            Go to Reservations
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
