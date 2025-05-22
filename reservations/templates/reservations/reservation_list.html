@@ -1,4 +1,3 @@
-
 {% extends "base.html" %}
 {% block title %}{% if user.is_staff %}All Reservations{% else %}My Reservations{% endif %}{% endblock %}
 
@@ -32,7 +31,7 @@
           {% for r in reservations %}
             <tr>
               <td>{{ r.date }}</td>
-              <td>{{ r.hour|add:""|rjust:"2":"0" }}:00–{{ r.hour|add:"1"|rjust:"2":"0" }}:00</td>
+              <td>{{ r.hour|stringformat:"02d" }}:00–{{ r.hour|add:"1"|stringformat:"02d" }}:00</td>
               <td>{{ r.room.name }}</td>
               {% if user.is_staff %}
                 <td>{{ r.user.username }}</td>

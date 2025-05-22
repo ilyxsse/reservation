@@ -1,4 +1,3 @@
-
 """
 Root URL-dispatcher.
 
@@ -32,14 +31,14 @@ urlpatterns = [
     path(
         "dashboard/admin/",
         login_required(
-            TemplateView.as_view(template_name="dashboards/admin_dashboard.html")
+            TemplateView.as_view(template_name="dashboard/admin_dashboard.html")
         ),
         name="admin_dashboard",
     ),
     path(
         "dashboard/",
         login_required(
-            TemplateView.as_view(template_name="dashboards/user_dashboard.html")
+            TemplateView.as_view(template_name="dashboard/user_dashboard.html")
         ),
         name="user_dashboard",
     ),
